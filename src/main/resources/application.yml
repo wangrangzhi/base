@@ -1,0 +1,46 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka/
+server:
+  port: 40416
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-active: 8
+  application:
+    name: base
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+  datasource:
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat,wall
+    initialSize: 5
+    maxActive: 10
+    maxPoolPreparedStatementPerConnectionSize: 2000
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 90000
+    minIdle: 5
+    password: jytc84922927!
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 6000
+    type: com.alibaba.druid.pool.DruidDataSource
+    #url: jdbc:mysql://139.9.239.198:3306/xj_maillist?characterEncoding=utf8
+    url: jdbc:mysql://139.9.239.198:3306/xj_maillist?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    ValidationQuery: select * from user
+mybatis:
+  typeAliasesPackage: io.github.wangrangzhi.goods.mapper
+  mapperLocations: classpath:mapper/*.xml
+logging:
+  file:
+    path: logs
+#logging:
+#    level:
+#        io.github.wangrangzhi.goods.mapper: debug
